@@ -1,487 +1,484 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNEHUPR - Profil Membre</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        padding: 20px;
-      }
-
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-        animation: slideIn 0.8s ease-out;
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
 
-      .header {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        padding: 40px 30px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 20% 80%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 50%
-          );
-      }
-
-      .header-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .organization-name {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .organization-subtitle {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        font-weight: 300;
-        letter-spacing: 1px;
-      }
-
-      .member-profile {
-        padding: 40px 30px;
-      }
-
-      .profile-header {
-        text-align: center;
-        margin-bottom: 40px;
-        padding-bottom: 30px;
-        border-bottom: 2px solid #e8ecf4;
-      }
-
-      .member-name {
-        font-size: 2.5rem;
-        color: #2d3748;
-        font-weight: 600;
-        margin-bottom: 10px;
-      }
-
-      .member-status {
-        background: linear-gradient(135deg, #4caf50, #45a049);
-        color: white;
-        padding: 8px 20px;
-        border-radius: 25px;
-        font-weight: 500;
-        display: inline-block;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 30px;
-      }
-
-      .info-card {
-        background: #f8fafc;
-        border-radius: 15px;
-        padding: 25px;
-        border-left: 5px solid #4299e1;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .info-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .info-card:nth-child(2n) {
-        border-left-color: #48bb78;
-      }
-
-      .info-card:nth-child(3n) {
-        border-left-color: #ed8936;
-      }
-
-      .info-card:nth-child(4n) {
-        border-left-color: #9f7aea;
-      }
-
-      .info-label {
-        font-size: 0.85rem;
-        color: #718096;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 8px;
-        font-weight: 600;
-      }
-
-      .info-value {
-        font-size: 1.1rem;
-        color: #2d3748;
-        font-weight: 500;
-        line-height: 1.4;
-      }
-
-      .academic-section {
-        background: linear-gradient(135deg, #e6f3ff, #f0f8ff);
-        margin: 30px -30px -40px -30px;
-        padding: 40px 30px;
-        border-top: 2px solid #e8ecf4;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-        color: #2d3748;
-        font-weight: 600;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-
-      .blood-type {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.2rem;
-        text-align: center;
-        margin-top: 20px;
-        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-      }
-
-      @media (max-width: 768px) {
         body {
-          padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-          border-radius: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
-          padding: 30px 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         .organization-name {
-          font-size: 1.8rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .organization-subtitle {
-          font-size: 1rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .member-profile {
-          padding: 30px 20px;
+            padding: 40px 30px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8ecf4;
         }
 
         .member-name {
-          font-size: 2rem;
+            font-size: 2.5rem;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .member-status {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            display: inline-block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .info-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .info-card {
-          padding: 20px;
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #4299e1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .info-card:nth-child(2n) {
+            border-left-color: #48bb78;
+        }
+
+        .info-card:nth-child(3n) {
+            border-left-color: #ed8936;
+        }
+
+        .info-card:nth-child(4n) {
+            border-left-color: #9f7aea;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 500;
+            line-height: 1.4;
         }
 
         .academic-section {
-          margin: 20px -20px -30px -20px;
-          padding: 30px 20px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .organization-name {
-          font-size: 1.5rem;
+            background: linear-gradient(135deg, #e6f3ff, #f0f8ff);
+            margin: 30px -30px -40px -30px;
+            padding: 40px 30px;
+            border-top: 2px solid #e8ecf4;
         }
 
-        .member-name {
-          font-size: 1.7rem;
+        .section-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .info-card {
-          padding: 15px;
+        .blood-type {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
-      }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .organization-name {
+                font-size: 1.8rem;
+            }
+
+            .organization-subtitle {
+                font-size: 1rem;
+            }
+
+            .member-profile {
+                padding: 30px 20px;
+            }
+
+            .member-name {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+
+            .academic-section {
+                margin: 20px -20px -30px -20px;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .organization-name {
+                font-size: 1.5rem;
+            }
+
+            .member-name {
+                font-size: 1.7rem;
+            }
+
+            .info-card {
+                padding: 15px;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <header class="header">
-        <div class="header-content">
-          <h1 class="organization-name">UNEHUPR</h1>
-          <p class="organization-subtitle">
-            Union Nationale des Étudiants Haïtiens de l'Université Publique de
-            la République
-          </p>
-        </div>
-      </header>
+        <header class="header">
+            <div class="header-content">
+                <h1 class="organization-name">UNEHUPR</h1>
+                <p class="organization-subtitle">Union Nationale des Étudiants Haïtiens de l'Université Publique de la République</p>
+            </div>
+        </header>
 
-      <main class="member-profile">
-        <div class="profile-header">
-          <h2 class="member-name" id="memberName">Jean Baptiste PIERRE</h2>
-          <span class="member-status">Membre Actif UNEH</span>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-card">
-            <div class="info-label">Nom</div>
-            <div class="info-value" id="lastName">PIERRE</div>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">Prénom</div>
-            <div class="info-value" id="firstName">Jean Baptiste</div>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">NIF</div>
-            <div class="info-value" id="nif">001-234-567-8</div>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">NINU</div>
-            <div class="info-value" id="ninu">HT2024001234</div>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">Date de Naissance</div>
-            <div class="info-value" id="birthDate">15 Mars 1998</div>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">Lieu de Naissance</div>
-            <div class="info-value" id="birthPlace">Port-au-Prince, Haïti</div>
-          </div>
-        </div>
-
-        <div class="academic-section">
-          <h3 class="section-title">Informations Académiques</h3>
-
-          <div class="info-grid">
-            <div class="info-card">
-              <div class="info-label">Faculté</div>
-              <div class="info-value" id="faculty">Faculté des Sciences</div>
+        <main class="member-profile">
+            <div class="profile-header">
+                <h2 class="member-name" id="memberName">Jean Baptiste PIERRE</h2>
+                <span class="member-status">Membre Actif UNEH</span>
             </div>
 
-            <div class="info-card">
-              <div class="info-label">Diplôme</div>
-              <div class="info-value" id="degree">Licence en Informatique</div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Nom</div>
+                    <div class="info-value" id="lastName">PIERRE</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Prénom</div>
+                    <div class="info-value" id="firstName">Jean Baptiste</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Téléphone</div>
+                    <div class="info-value" id="telephone">+509 1234-5678</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Email</div>
+                    <div class="info-value" id="email">jean.pierre@uneh.edu.ht</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Date de Naissance</div>
+                    <div class="info-value" id="birthDate">15 Mars 1998</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Lieu de Naissance</div>
+                    <div class="info-value" id="birthPlace">Port-au-Prince, Haïti</div>
+                </div>
             </div>
 
-            <div class="info-card">
-              <div class="info-label">Affectation UNEH</div>
-              <div class="info-value" id="unehFunction">
-                Secrétaire Général - Section Informatique
-              </div>
-            </div>
-          </div>
+            <div class="academic-section">
+                <h3 class="section-title">Informations Académiques</h3>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Faculté</div>
+                        <div class="info-value" id="faculty">Faculté des Sciences</div>
+                    </div>
 
-          <div class="blood-type">
-            <div class="info-label" style="color: white; opacity: 0.9">
-              Groupe Sanguin
+                    <div class="info-card">
+                        <div class="info-label">Option</div>
+                        <div class="info-value" id="option">Informatique</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-label">Niveau</div>
+                        <div class="info-value" id="niveau">4ème année</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-label">Promotion</div>
+                        <div class="info-value" id="promotion">2024</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-label">Fonction UNEH</div>
+                        <div class="info-value" id="unehFunction">Secrétaire Général - Section Informatique</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-label">Statut</div>
+                        <div class="info-value" id="statut">Actif</div>
+                    </div>
+                </div>
             </div>
-            <div class="info-value" style="color: white" id="bloodType">O+</div>
-          </div>
-        </div>
-      </main>
+        </main>
     </div>
 
     <script>
-      // Fonction pour récupérer les paramètres GET de l'URL
-      function getURLParameters() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return {
-          firstName: urlParams.get("prenom") || "Non spécifié",
-          lastName: urlParams.get("nom") || "Non spécifié",
-          nif: urlParams.get("nif") || "Non spécifié",
-          ninu: urlParams.get("ninu") || "Non spécifié",
-          birthDate: urlParams.get("dateNaissance") || "Non spécifié",
-          birthPlace: urlParams.get("lieuNaissance") || "Non spécifié",
-          unehFunction: urlParams.get("fonctionUneh") || "Non spécifié",
-          faculty: urlParams.get("faculte") || "Non spécifié",
-          degree: urlParams.get("diplome") || "Non spécifié",
-          bloodType: urlParams.get("groupeSanguin") || "Non spécifié",
-        };
-      }
-
-      // Données par défaut si aucun paramètre n'est fourni
-      const defaultData = {
-        firstName: "Jean Baptiste",
-        lastName: "PIERRE",
-        nif: "001-234-567-8",
-        ninu: "HT2024001234",
-        birthDate: "15 Mars 1998",
-        birthPlace: "Port-au-Prince, Haïti",
-        unehFunction: "Secrétaire Général - Section Informatique",
-        faculty: "Faculté des Sciences",
-        degree: "Licence en Informatique",
-        bloodType: "O+",
-      };
-
-      // Fonction pour décoder les paramètres URL (gestion des caractères spéciaux)
-      function decodeURLParameter(param) {
-        if (!param || param === "Non spécifié") return param;
-        try {
-          return decodeURIComponent(param.replace(/\+/g, " "));
-        } catch (e) {
-          return param;
+        // Fonction pour récupérer les paramètres GET de l'URL
+        function getURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                firstName: urlParams.get('prenom') || 'Non spécifié',
+                lastName: urlParams.get('nom') || 'Non spécifié',
+                telephone: urlParams.get('telephone') || 'Non spécifié',
+                email: urlParams.get('email') || 'Non spécifié',
+                birthDate: urlParams.get('datenaissance') || 'Non spécifié',
+                birthPlace: urlParams.get('lieunaissance') || 'Non spécifié',
+                faculty: urlParams.get('faculte') || 'Non spécifié',
+                option: urlParams.get('option') || 'Non spécifié',
+                niveau: urlParams.get('niveau') || 'Non spécifié',
+                promotion: urlParams.get('promotion') || 'Non spécifié',
+                unehFunction: urlParams.get('fonctionuneh') || 'Non spécifié',
+                statut: urlParams.get('statut') || 'Non spécifié'
+            };
         }
-      }
 
-      // Fonction pour mettre à jour les informations affichées
-      function updateMemberInfo(data) {
-        // Décoder tous les paramètres
-        const decodedData = {};
-        Object.keys(data).forEach((key) => {
-          decodedData[key] = decodeURLParameter(data[key]);
+        // Données par défaut si aucun paramètre n'est fourni
+        const defaultData = {
+            firstName: "Jean Baptiste",
+            lastName: "PIERRE",
+            telephone: "+509 1234-5678",
+            email: "jean.pierre@uneh.edu.ht",
+            birthDate: "15 Mars 1998",
+            birthPlace: "Port-au-Prince, Haïti",
+            faculty: "Faculté des Sciences",
+            option: "Informatique",
+            niveau: "4ème année",
+            promotion: "2024",
+            unehFunction: "Secrétaire Général - Section Informatique",
+            statut: "Actif"
+        };
+
+        // Fonction pour décoder les paramètres URL (gestion des caractères spéciaux)
+        function decodeURLParameter(param) {
+            if (!param || param === 'Non spécifié') return param;
+            try {
+                return decodeURIComponent(param.replace(/\+/g, ' '));
+            } catch (e) {
+                return param;
+            }
+        }
+
+        // Fonction pour mettre à jour les informations affichées
+        function updateMemberInfo(data) {
+            // Décoder tous les paramètres
+            const decodedData = {};
+            Object.keys(data).forEach(key => {
+                decodedData[key] = decodeURLParameter(data[key]);
+            });
+
+            document.getElementById('memberName').textContent = `${decodedData.firstName} ${decodedData.lastName}`;
+            document.getElementById('firstName').textContent = decodedData.firstName;
+            document.getElementById('lastName').textContent = decodedData.lastName;
+            document.getElementById('telephone').textContent = decodedData.telephone;
+            document.getElementById('email').textContent = decodedData.email;
+            document.getElementById('birthDate').textContent = decodedData.birthDate;
+            document.getElementById('birthPlace').textContent = decodedData.birthPlace;
+            document.getElementById('faculty').textContent = decodedData.faculty;
+            document.getElementById('option').textContent = decodedData.option;
+            document.getElementById('niveau').textContent = decodedData.niveau;
+            document.getElementById('promotion').textContent = decodedData.promotion;
+            document.getElementById('unehFunction').textContent = decodedData.unehFunction;
+            document.getElementById('statut').textContent = decodedData.statut;
+        }
+
+        // Animation d'apparition des cartes
+        function animateCards() {
+            const cards = document.querySelectorAll('.info-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Fonction pour afficher un exemple d'URL
+        function showExampleURL() {
+            const baseURL = window.location.origin + window.location.pathname;
+            const exampleURL = `${baseURL}?nom=PIERRE&prenom=Jean%20Baptiste&telephone=%2B509%201234-5678&email=jean.pierre%40uneh.edu.ht&datenaissance=15%20Mars%201998&lieunaissance=Port-au-Prince%2C%20Ha%C3%AFti&faculte=Facult%C3%A9%20des%20Sciences&option=Informatique&niveau=4%C3%A8me%20ann%C3%A9e&promotion=2024&fonctionuneh=Secr%C3%A9taire%20G%C3%A9n%C3%A9ral&statut=Actif`;
+            
+            console.log("Exemple d'URL avec paramètres :");
+            console.log(exampleURL);
+            console.log("\nParamètres disponibles (informations publiques) :");
+            console.log("- nom: Nom de famille");
+            console.log("- prenom: Prénom");
+            console.log("- telephone: Numéro de téléphone");
+            console.log("- email: Adresse email");
+            console.log("- datenaissance: Date de naissance");
+            console.log("- lieunaissance: Lieu de naissance");
+            console.log("- faculte: Faculté d'études");
+            console.log("- option: Option/Spécialisation");
+            console.log("- niveau: Niveau d'études");
+            console.log("- promotion: Année de promotion");
+            console.log("- fonctionuneh: Fonction dans l'UNEH");
+            console.log("- statut: Statut du membre");
+        }
+
+        // Initialisation au chargement de la page
+        window.addEventListener('load', () => {
+            // Récupérer les paramètres de l'URL
+            const urlData = getURLParameters();
+            
+            // Utiliser les paramètres URL si disponibles, sinon utiliser les données par défaut
+            const memberData = {};
+            Object.keys(defaultData).forEach(key => {
+                memberData[key] = urlData[key] !== 'Non spécifié' ? urlData[key] : defaultData[key];
+            });
+            
+            updateMemberInfo(memberData);
+            setTimeout(animateCards, 500);
+            
+            // Afficher l'exemple d'URL dans la console (F12 pour voir)
+            showExampleURL();
         });
 
-        document.getElementById(
-          "memberName"
-        ).textContent = `${decodedData.firstName} ${decodedData.lastName}`;
-        document.getElementById("firstName").textContent =
-          decodedData.firstName;
-        document.getElementById("lastName").textContent = decodedData.lastName;
-        document.getElementById("nif").textContent = decodedData.nif;
-        document.getElementById("ninu").textContent = decodedData.ninu;
-        document.getElementById("birthDate").textContent =
-          decodedData.birthDate;
-        document.getElementById("birthPlace").textContent =
-          decodedData.birthPlace;
-        document.getElementById("unehFunction").textContent =
-          decodedData.unehFunction;
-        document.getElementById("faculty").textContent = decodedData.faculty;
-        document.getElementById("degree").textContent = decodedData.degree;
-        document.getElementById("bloodType").textContent =
-          decodedData.bloodType;
-      }
-
-      // Animation d'apparition des cartes
-      function animateCards() {
-        const cards = document.querySelectorAll(".info-card");
-        cards.forEach((card, index) => {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(20px)";
-
-          setTimeout(() => {
-            card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          }, index * 100);
-        });
-      }
-
-      // Fonction pour afficher un exemple d'URL
-      function showExampleURL() {
-        const baseURL = window.location.origin + window.location.pathname;
-        const exampleURL = `${baseURL}?nom=PIERRE&prenom=Jean%20Baptiste&nif=001-234-567-8&ninu=HT2024001234&dateNaissance=15%20Mars%201998&lieuNaissance=Port-au-Prince%2C%20Ha%C3%AFti&fonctionUneh=Secr%C3%A9taire%20G%C3%A9n%C3%A9ral&faculte=Facult%C3%A9%20des%20Sciences&diplome=Licence%20en%20Informatique&groupeSanguin=O%2B`;
-
-        console.log("Exemple d'URL avec paramètres :");
-        console.log(exampleURL);
-        console.log("\nParamètres disponibles :");
-        console.log("- nom: Nom de famille");
-        console.log("- prenom: Prénom");
-        console.log("- nif: Numéro d'Identification Fiscale");
-        console.log("- ninu: Numéro d'Identification Nationale Unique");
-        console.log("- dateNaissance: Date de naissance");
-        console.log("- lieuNaissance: Lieu de naissance");
-        console.log("- fonctionUneh: Fonction dans l'UNEH");
-        console.log("- faculte: Faculté d'études");
-        console.log("- diplome: Diplôme obtenu");
-        console.log("- groupeSanguin: Groupe sanguin");
-      }
-
-      // Initialisation au chargement de la page
-      window.addEventListener("load", () => {
-        // Récupérer les paramètres de l'URL
-        const urlData = getURLParameters();
-
-        // Utiliser les paramètres URL si disponibles, sinon utiliser les données par défaut
-        const memberData = {};
-        Object.keys(defaultData).forEach((key) => {
-          memberData[key] =
-            urlData[key] !== "Non spécifié" ? urlData[key] : defaultData[key];
-        });
-
-        updateMemberInfo(memberData);
-        setTimeout(animateCards, 500);
-
-        // Afficher l'exemple d'URL dans la console (F12 pour voir)
-        showExampleURL();
-      });
-
-      // Fonction utilitaire pour créer une URL avec les données actuelles
-      function generateCurrentURL() {
-        const baseURL = window.location.origin + window.location.pathname;
-        const urlData = getURLParameters();
-        const params = new URLSearchParams();
-
-        Object.entries(urlData).forEach(([key, value]) => {
-          if (value !== "Non spécifié") {
-            const paramName = {
-              firstName: "prenom",
-              lastName: "nom",
-              nif: "nif",
-              ninu: "ninu",
-              birthDate: "dateNaissance",
-              birthPlace: "lieuNaissance",
-              unehFunction: "fonctionUneh",
-              faculty: "faculte",
-              degree: "diplome",
-              bloodType: "groupeSanguin",
-            }[key];
-            if (paramName) params.set(paramName, value);
-          }
-        });
-
-        return `${baseURL}?${params.toString()}`;
-      }
+        // Fonction utilitaire pour créer une URL avec les données actuelles
+        function generateCurrentURL() {
+            const baseURL = window.location.origin + window.location.pathname;
+            const urlData = getURLParameters();
+            const params = new URLSearchParams();
+            
+            Object.entries(urlData).forEach(([key, value]) => {
+                if (value !== 'Non spécifié') {
+                    const paramName = {
+                        firstName: 'prenom',
+                        lastName: 'nom',
+                        telephone: 'telephone',
+                        email: 'email',
+                        birthDate: 'datenaissance',
+                        birthPlace: 'lieunaissance',
+                        faculty: 'faculte',
+                        option: 'option',
+                        niveau: 'niveau',
+                        promotion: 'promotion',
+                        unehFunction: 'fonctionuneh',
+                        statut: 'statut'
+                    }[key];
+                    if (paramName) params.set(paramName, value);
+                }
+            });
+            
+            return `${baseURL}?${params.toString()}`;
+        }
     </script>
-  </body>
+</body>
 </html>
