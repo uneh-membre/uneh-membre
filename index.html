@@ -104,6 +104,46 @@
         margin-bottom: 10px;
       }
 
+      .member-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 20px auto;
+        border: 4px solid #4299e1;
+        box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .member-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .member-photo .default-icon {
+        font-size: 3rem;
+        color: #718096;
+      }
+
+      .member-photo .loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #4299e1;
+      }
+
       .member-status {
         background: linear-gradient(135deg, #4caf50, #45a049);
         color: white;
@@ -268,6 +308,9 @@
 
       <main class="member-profile">
         <div class="profile-header">
+          <div class="member-photo" id="memberPhoto">
+            <div class="default-icon">👤</div>
+          </div>
           <h2 class="member-name" id="memberName">Jean Baptiste PIERRE</h2>
           <span class="member-status">Membre Actif UNEH</span>
         </div>
@@ -361,6 +404,7 @@
           promotion: urlParams.get("promotion") || "Non spécifié",
           unehFunction: urlParams.get("fonctionuneh") || "Non spécifié",
           statut: urlParams.get("statut") || "Non spécifié",
+          photo: urlParams.get("photo") || null,
         };
       }
 
@@ -378,6 +422,7 @@
         promotion: "2024",
         unehFunction: "Secrétaire Général - Section Informatique",
         statut: "Actif",
+        photo: null,
       };
 
       // Fonction pour décoder les paramètres URL (gestion des caractères spéciaux)
@@ -390,6 +435,36 @@
         }
       }
 
+      // Fonction pour mettre à jour la photo de profil
+      function updateMemberPhoto(photoUrl) {
+        const photoContainer = document.getElementById("memberPhoto");
+        
+        if (photoUrl && photoUrl !== "Non spécifié") {
+          // Afficher un indicateur de chargement
+          photoContainer.innerHTML = '<div class="loading">⏳</div>';
+          
+          // Créer une nouvelle image pour tester le chargement
+          const img = new Image();
+          
+          img.onload = function() {
+            // Image chargée avec succès
+            photoContainer.innerHTML = `<img src="${photoUrl}" alt="Photo de profil" />`;
+          };
+          
+          img.onerror = function() {
+            // Erreur de chargement, afficher l'icône par défaut
+            photoContainer.innerHTML = '<div class="default-icon">👤</div>';
+            console.warn("Impossible de charger l'image:", photoUrl);
+          };
+          
+          // Démarrer le chargement
+          img.src = photoUrl;
+        } else {
+          // Pas d'URL fournie, afficher l'icône par défaut
+          photoContainer.innerHTML = '<div class="default-icon">👤</div>';
+        }
+      }
+
       // Fonction pour mettre à jour les informations affichées
       function updateMemberInfo(data) {
         // Décoder tous les paramètres
@@ -397,6 +472,9 @@
         Object.keys(data).forEach((key) => {
           decodedData[key] = decodeURLParameter(data[key]);
         });
+
+        // Mettre à jour la photo
+        updateMemberPhoto(decodedData.photo);
 
         document.getElementById(
           "memberName"
@@ -439,7 +517,7 @@
       // Fonction pour afficher un exemple d'URL
       function showExampleURL() {
         const baseURL = window.location.origin + window.location.pathname;
-        const exampleURL = `${baseURL}?nom=PIERRE&prenom=Jean%20Baptiste&telephone=%2B509%201234-5678&email=jean.pierre%40uneh.edu.ht&datenaissance=15%20Mars%201998&lieunaissance=Port-au-Prince%2C%20Ha%C3%AFti&faculte=Facult%C3%A9%20des%20Sciences&option=Informatique&niveau=4%C3%A8me%20ann%C3%A9e&promotion=2024&fonctionuneh=Secr%C3%A9taire%20G%C3%A9n%C3%A9ral&statut=Actif`;
+        const exampleURL = `${baseURL}?nom=PIERRE&prenom=Jean%20Baptiste&telephone=%2B509%201234-5678&email=jean.pierre%40uneh.edu.ht&datenaissance=15%20Mars%201998&lieunaissance=Port-au-Prince%2C%20Ha%C3%AFti&faculte=Facult%C3%A9%20des%20Sciences&option=Informatique&niveau=4%C3%A8me%20ann%C3%A9e&promotion=2024&fonctionuneh=Secr%C3%A9taire%20G%C3%A9n%C3%A9ral&statut=Actif&photo=https%3A//example.com/photo.jpg`;
 
         console.log("Exemple d'URL avec paramètres :");
         console.log(exampleURL);
@@ -456,6 +534,11 @@
         console.log("- promotion: Année de promotion");
         console.log("- fonctionuneh: Fonction dans l'UNEH");
         console.log("- statut: Statut du membre");
+        console.log("- photo: URL de la photo de profil (optionnel)");
+        console.log("\nExemples d'URLs de photos valides :");
+        console.log("- https://example.com/photo.jpg");
+        console.log("- https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face");
+        console.log("- https://via.placeholder.com/400x400/4299e1/ffffff?text=Photo");
       }
 
       // Initialisation au chargement de la page
@@ -498,6 +581,7 @@
               promotion: "promotion",
               unehFunction: "fonctionuneh",
               statut: "statut",
+              photo: "photo",
             }[key];
             if (paramName) params.set(paramName, value);
           }
